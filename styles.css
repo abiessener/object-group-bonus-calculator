@@ -1,0 +1,26 @@
+h1 {
+    text-align: center
+}
+
+h2 {
+    margin-left: 15px
+}
+
+p {
+    margin-left: 30px
+}
+
+body {
+    background: #42e5f4
+}
+
+#output {
+    background: #21adba;
+    width: 80%;
+    margin: 10px auto;
+    border: 2px solid;
+    border-radius: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: none
+}
