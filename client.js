@@ -9,6 +9,7 @@ var employees = [ atticus, jem, boo, scout, robert, mayella ];
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
+// constructor for an employee bonus object. Poorly named :/
 function Result(name, bonusPercentage, totalBonus, totalCompensation) {
     this.name = name;
     this.bonusPercentage = bonusPercentage;
@@ -16,19 +17,26 @@ function Result(name, bonusPercentage, totalBonus, totalCompensation) {
     this.totalCompensation = totalCompensation;
 }
 
+// takes an employee and returns a NEW object with that employee's bonus data
 function bonus(emp){    
     // var result = {};
+    // result.name = emp.name;
+    // result.bonusPercentage = calcBonus(emp);
+    // result.totalBonus = emp.annualSalary * result.bonusPercentage;
+    // result.totalCompensation = +result.totalBonus + +emp.annualSalary;
+    // return result;
+
     var name = emp.name;
     var bonusPercentage = calcBonus(emp); // tbd
     var totalBonus = emp.annualSalary * bonusPercentage; // bonus per calc
     var totalCompensation = +totalBonus + +emp.annualSalary; //base + bonus
-    // return result;
+    
     var result = new Result(name, bonusPercentage, totalBonus, totalCompensation);
+    
     return result;
-
 }
 
-// takes an employee, returns the bonus percentage they 'deserve' as a float
+// takes an employee, returns the bonus percentage they 'deserve' as a two-digit float
 function calcBonus(emp){
     var bonus;
     switch(emp.reviewRating){
@@ -47,6 +55,7 @@ function calcBonus(emp){
         default:
             bonus = 0;
     }
+
     if(emp.employeeNumber.length===4){
         bonus += 0.05;
     };
@@ -62,26 +71,11 @@ function calcBonus(emp){
     return bonus;
 }
 
-
-$(document).ready(function(){
-
-    $('#btn').click(showOutput);
-        // var str = "";
-        // str += person.name + " - Bonus Percentage: " + person.bonusPercentage 
-        // outputStrings.push(person.name);
-        
-        
-
-    //$('#output').text(bonusArr);
-
-
-
-
-
-})
-
+// all code is hidden behind the click handler for the button object #btn on the DOM. will only run once - skips all actual code if div#output is visible
 function showOutput(){
     if(!($('#output').is(':visible'))){
+        
+        //base mode through the end of this console.log
         var bonusArr = [];
 
         for (var i = 0; i < employees.length; i++) {
@@ -102,3 +96,8 @@ function showOutput(){
         }
     }
 }
+
+// hey look, we're actually executing something here finally
+$(document).ready(function(){
+    $('#btn').click(showOutput);
+});
